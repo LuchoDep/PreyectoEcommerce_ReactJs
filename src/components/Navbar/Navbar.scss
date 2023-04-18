@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 180px;
+    background-color: rgb(192, 158, 6);
+
+    .logo {
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .titulo{
+        align-self: self-start;
+        font-size: 40px;
+        color: #ffffff;
+    }
+
+    .navbar_menu{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        list-style: none;
+        text-decoration: none;
+        gap: 50px;
+        font-size: 30px;
+        color: #ffffff;
+    }
+
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+}
