@@ -10,26 +10,51 @@
         max-height: 100px;
     }
 
-    .titulo{
-        align-self: self-start;
-        font-size: 40px;
-        color: #ffffff;
+    .navbar {
+        position: relative;
+
+        .navbar_menu {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 30px;
+        }
+
+        .navbar_item {
+            text-decoration: none;
+            list-style: none;
+            font-size: 20px;
+        }
+
+        .navbar_dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: flex;
+            flex-direction: row;
+            background-color: rgb(192, 158, 6);
+            padding: 10px;
+            gap: 10px;
+            font-size: 18px;
+            list-style: none;
+        }
+
+        .navbar_dropdown li {
+            margin-right: 10px;
+        }
+
+        .navbar_dropdown a {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
     }
 
-    .navbar_menu{
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        list-style: none;
-        text-decoration: none;
-        gap: 50px;
-        font-size: 30px;
-        color: #ffffff;
-    }
 
-    a {
-        color: #ffffff;
-        text-decoration: none;
-    }
 
 }
