@@ -1,5 +1,4 @@
 import './ItemListContainer.scss';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useState, useEffect } from 'react';
 import { llamarStock } from '../../utils/llamarStock';
@@ -11,7 +10,7 @@ export const ItemListContainer = () => {
     const [productos, setProductos] = useState([])
 
     const { categId } = useParams()
-    console.log(categId)
+    // console.log(categId)
 
     useEffect(() => {
 
@@ -39,7 +38,7 @@ export const ItemListContainer = () => {
                         <Card.Body className="d-flex flex-column">
                             <Card.Title >{prod.nombre}</Card.Title>
                             <Card.Text className='flex-fill'>{prod.precio}</Card.Text>
-                            <Link to={`/detal/${prod.id}`}  className="btn btn-danger">Detalle</Link>
+                            <Link to={`/producto/${prod.id}`}  className="btn btn-danger">Detalle</Link>
                         </Card.Body>
                     </Card>
                 </div >
