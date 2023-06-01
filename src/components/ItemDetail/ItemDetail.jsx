@@ -36,7 +36,7 @@ export const ItemDetail = ({ prod }) => {
                             : <Contador
                                 cantidad={cantidad}
                                 setCantidad={setCantidad}
-                                stock={prod.stock}
+                                stock={prod.cantidad}
                                 agregar={handleAgregar}
                             />
                     }
