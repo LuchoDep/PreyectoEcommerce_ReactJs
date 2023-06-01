@@ -1,0 +1,31 @@
+.contenedor {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .contenedorCards {
+
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        max-width: 550px;
+
+
+        .prodCards {
+
+            width: 450px;
+            height: 550px;
+            gap: 25px;
+            margin: 20px;
+
+
+            .prodCardImg {
+                width: auto;
+                height: auto;
+                max-height: 350px;
+            }
+        }
+    }
+
+}

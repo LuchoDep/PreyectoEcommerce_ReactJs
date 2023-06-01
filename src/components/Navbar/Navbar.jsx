@@ -12,7 +12,7 @@ export const Navbar = () => {
 
     return (
         <header className='header'>
-            <div className='container'>
+            <div className='container justify-content-between'>
                 <img src="/logo.jpg" alt="logo" className='logo' />
                 <nav className="navbar">
                     <ul className="navbar_menu">
@@ -39,9 +39,6 @@ export const Navbar = () => {
                                     </li>
                                 </ul>
                             )}
-                        </li>
-                        <li className="navbar_item">
-                            <Link to="/Contacto">Contacto</Link>
                         </li>
                     </ul>
                 </nav>

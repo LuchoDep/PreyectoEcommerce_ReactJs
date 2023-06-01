@@ -1,25 +1,30 @@
-import { llamarStock } from "../../utils/llamarStock"
-import { Contador } from "../Contador/Contador";
-import './ItemDetailContainer.scss';
+import { ItemDetail } from '../ItemDetail/ItemDetail';
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-
+import { doc, getDoc } from "firebase/firestore";
+import { database } from "../../firebase/config";
 
 export const ItemDetailContainer = () => {
     const [producto, setProducto] = useState(null)
     const { prodId } = useParams()
-    // console.log(prodId)
 
     useEffect(() => {
-        llamarStock()
-            .then((stock) => {
-                if (prodId) {
-                    setProducto(stock.filter((prod) => prod.id === Number(prodId)));
-                } else {
-                    setProducto(stock);
+
+        const docRef = doc(database, "productos", prodId)
+
+        getDoc(docRef)
+            .then((doc) => {
+                const _prod = {
+                    id: doc.id,
+                    ...doc.data()
                 }
+
+                setProducto(_prod)
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err)
+            })
+
     }, [prodId]);
 
     if (!producto) {
@@ -27,27 +32,10 @@ export const ItemDetailContainer = () => {
     }
 
     return (
-        <div>
-            {producto.map((prod) => (
+        <div className="container my-4">
 
-                <div className="contenedor_Detail m-5" key={prod.id}>
-                    <div>
-                        <h2 className="titulo_Detail">{prod.nombre}</h2>
-                        <img src={prod.img} alt={prod.name} className="imagen_Detail" />
-                    </div>
-                    <div className="desc_Detail">
-                        <p>{prod.descripcion}</p>
-                        <strong>${prod.precio}</strong>
-                    </div>
-                    <div className="botones_Detail">
-                        <Contador />
-                        <br />
-                        <button className="btn btn-danger">Añadir al carrito</button>
-                    </div>
-                </div>
-            ))}
+            <ItemDetail prod={producto}/>
 
         </div>
-
     )
 }

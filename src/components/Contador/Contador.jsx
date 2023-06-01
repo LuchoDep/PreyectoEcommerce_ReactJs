@@ -1,24 +1,30 @@
-import { useState } from "react"
 
 
-
-export const Contador = () => {
-    const [cantidad, setCantidad] = useState(1)
+export const Contador = ({ cantidad, setCantidad, stock, agregar }) => {
 
     const handleMenos = () => {
-        cantidad > 1 && setCantidad (cantidad - 1)
+        cantidad > 1 && setCantidad(cantidad - 1)
     }
 
     const handleMas = () => {
-        setCantidad (cantidad + 1)
+        setCantidad(cantidad + 1)
     }
 
 
     return (
         <div>
-            <button className="btn btn-outline-danger  my-2" onClick={handleMenos}>-</button>
+
+            <button onClick={handleMenos} className={"btn btn-danger mx-1"} disabled={cantidad === 1}> - </button>
+
             <span className="mx-2">{cantidad}</span>
-            <button className="btn btn-outline-danger  my-2" onClick={handleMas}>+</button>
+
+            <button
+                onClick={handleMas} className={"btn btn-danger mx-1"} disabled={cantidad === stock}> + </button>
+
+            <br />
+
+            <button onClick={agregar} className="btn btn-success my-2">Agregar al carrito</button>
         </div>
     )
 }
+

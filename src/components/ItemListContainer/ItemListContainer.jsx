@@ -1,48 +1,49 @@
-import './ItemListContainer.scss';
-import Card from 'react-bootstrap/Card';
+import { ItemList } from '../ItemList/ItemList';
 import { useState, useEffect } from 'react';
-import { llamarStock } from '../../utils/llamarStock';
 import { Link, useParams } from 'react-router-dom';
-
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { database } from '../../firebase/config';
 
 export const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([])
 
     const { categId } = useParams()
-    // console.log(categId)
 
     useEffect(() => {
 
-        llamarStock()
+        const productosRef = collection(database, "productos")
+        const q = categId
+            ? query(productosRef, where("categoria", "==", categId))
+            : productosRef
+
+
+        getDocs(q)
             .then((res) => {
-                if(!categId) {
-                    setProductos(res)
-                } else {
-                    setProductos(res.filter((el) => el.categoria === categId))
-                }
+                const docs = res.docs.map((doc) => {
+                    return {
+                        ...doc.data(),
+                        id: doc.id
+                    }
+                })
+
+                setProductos(docs)
             })
             .catch((err) => {
                 console.log(err)
             })
+
+
     }, [categId])
+
+
 
     return (
 
-        <div className='contenedor col m-3'>
+        <div className='contenedor my-5 mx-5'>
 
-            {productos.map((prod) => (
-                <div className='row contenedorCards' key={prod.id}>
-                    <Card className="row prodCards" >
-                        <Card.Img variant="left" src={prod.img} className='image-fluid prodCardImg flex-fill' />
-                        <Card.Body className="d-flex flex-column">
-                            <Card.Title >{prod.nombre}</Card.Title>
-                            <Card.Text className='flex-fill'>{prod.precio}</Card.Text>
-                            <Link to={`/producto/${prod.id}`}  className="btn btn-danger">Detalle</Link>
-                        </Card.Body>
-                    </Card>
-                </div >
-            ))}
+            <ItemList items={productos} />
+
         </div>
 
     );
