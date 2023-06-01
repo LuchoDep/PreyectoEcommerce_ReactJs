@@ -3,9 +3,11 @@ import { useContext, useState } from "react"
 import { CartContext } from "../../context/CartContext"
 import { Link } from "react-router-dom"
 import { Contador } from "../Contador/Contador"
+import { stockUtil } from '../../utils/stockUtil';
 
 export const ItemDetail = ({ prod }) => {
     const { agregarAlCarrito, EnCarrito } = useContext(CartContext)
+
 
     const [cantidad, setCantidad] = useState(1)
 
@@ -18,6 +20,8 @@ export const ItemDetail = ({ prod }) => {
         agregarAlCarrito(newItem)
     }
 
+
+
     return (
 
         <div className="contenedor_Detail m-5" key={prod.id}>
@@ -28,6 +32,7 @@ export const ItemDetail = ({ prod }) => {
             <div className="desc_Detail">
                 <p>{prod.descripcion}</p>
                 <strong>${prod.precio}</strong>
+
 
                 <div className="botones_Detail">
                     {
