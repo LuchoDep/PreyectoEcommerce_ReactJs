@@ -8,7 +8,7 @@ import { collection, getDoc, addDoc, writeBatch, doc } from "firebase/firestore"
 import { database } from "../../firebase/config";
 
 export const CheckoutFormulario = () => {
-    const { cart, totalCompra, emptyCart } = useContext(CartContext);
+    const { cart, emptyCart } = useContext(CartContext);
     const [orderId, setOrderId] = useState(null)
     const [formValues, setFormValues] = useState(null);
 
@@ -91,7 +91,7 @@ export const CheckoutFormulario = () => {
                 <p>Nombre: {formValues.nombre} {formValues.apellido}</p>
                 <p>Dirección: {formValues.direccion} - Ciudad: {formValues.ciudad}</p>
                 <p>Email: {formValues.email}</p>
-                <p>Importe total: {totalCompra} - Número de seguimiento: {orderId}</p>
+                <p>Número de seguimiento: {orderId}</p>
                 <Link to="/">Volver a inicio</Link>
             </div>
         );
@@ -108,35 +108,6 @@ export const CheckoutFormulario = () => {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
-                {/* <Form>
-                    <div>
-                        <label>Nombre:</label>
-                        <Field type="text" id="nombre" name="nombre" />
-                        <ErrorMessage name="nombre" component="div" />
-                    </div>
-                    <div>
-                        <label>Apellido:</label>
-                        <Field type="text" id="apellido" name="apellido" />
-                        <ErrorMessage name="apellido" component="div" />
-                    </div>
-                    <div>
-                        <label>Ciudad:</label>
-                        <Field type="text" id="ciudad" name="ciudad" />
-                        <ErrorMessage name="ciudad" component="div" />
-                    </div>
-                    <div>
-                        <label>Dirección:</label>
-                        <Field type="text" id="direccion" name="direccion" />
-                        <ErrorMessage name="direccion" component="div" />
-                    </div>
-                    <div>
-                        <label>Email:</label>
-                        <Field type="email" id="email" name="email" />
-                        <ErrorMessage name="email" component="div" />
-                    </div>
-                    <button type="submit">Realizar Pedido</button>
-                </Form> */}
-
                 <Form className="my-4">
                     <div className="mb-3 row justify-content-center">
                         <label htmlFor="nombre" className="col-sm-2 col-form-label">Nombre:</label>
